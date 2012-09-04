@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ristinolla;
 
 /**
- *
+ * Ristinollapeli.
  * @author moversti
  */
 public class Ristinolla {
