@@ -1,0 +1,10 @@
+Tehtävämäärittely
+
+Aihe: Ristinolla
+Vähintään 20x20 lautainen kaksinpelattava ristinolla jossa pitää saada viisi merkkiä pystyyn, vaakaan tai vinottain.
+
+Käyttäjät: Kaksi pelaajaa
+Pelaajat voivat asettaa vuorotellen pelilaudan ruudukkoon ristin (X) tai nollan (O). Peli loppu kun toinen voittaa tai lauta on täynnä.
+Pelaaja voi myös tallentaa pelin myöhemmäksi.
+Pelin alussa saattaa olla mahdollista muuttaa laudan kokoa.
+Tallennetun pelin voi ladata ja jatkaa siihen mihin jäätiin.
