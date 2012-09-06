@@ -59,11 +59,7 @@ public class Pelilauta {
     @Override
     public String toString() {
         String paluu = "   ";
-        for (int i = 0; i < leveys; i++) {
-            String lisattava = i + "";
-            lisattava = String.format("%3s", lisattava);
-            paluu += lisattava;
-        }
+        paluu = xKoordinaattiLuvut(paluu);
         paluu += "\n";
         for (int i = leveys - 1; i >= 0; i--) {
             paluu += String.format("%3s", i);
@@ -74,11 +70,7 @@ public class Pelilauta {
             paluu += "\n";
         }
         paluu += "   ";
-        for (int i = 0; i < leveys; i++) {
-            String lisattava = i + "";
-            lisattava = String.format("%3s", lisattava);
-            paluu += lisattava;
-        }
+        paluu = xKoordinaattiLuvut(paluu);
         return paluu;
     }
 
@@ -94,5 +86,14 @@ public class Pelilauta {
 
     public void undo() {
         ruudut[undo.y][undo.x] = undo.ruutu;
+    }
+
+    private String xKoordinaattiLuvut(String paluu) {
+        for (int i = 0; i < leveys; i++) {
+            String lisattava = i + "";
+            lisattava = String.format("%3s", lisattava);
+            paluu += lisattava;
+        }
+        return paluu;
     }
 }
