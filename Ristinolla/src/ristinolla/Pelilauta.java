@@ -9,6 +9,7 @@ public class Pelilauta {
     private Ruutu[][] ruudut;
     private int leveys;
     private int korkeus;
+    private Siirto undo;
 
     /**
      * Täyttää ruudut tyhjällä.
@@ -24,9 +25,22 @@ public class Pelilauta {
                 ruudut[i][j]=Ruutu._;
             }
         }
+        undo=new Siirto(0,0,Ruutu._);
     }
     public Pelilauta(){
         this(20,20);
+    }
+
+    public int getLeveys() {
+        return leveys;
+    }
+
+    public int getKorkeus() {
+        return korkeus;
+    }
+    
+    public void asetetaanUndo(Siirto siirto){
+        undo=siirto;
     }
     /**
      *
@@ -64,5 +78,9 @@ public class Pelilauta {
      */
     public Ruutu getRuutu(int x, int y){
         return ruudut[x][y];
+    }
+    
+    public void undo(){
+        ruudut[undo.x][undo.y]=undo.ruutu;
     }
 }

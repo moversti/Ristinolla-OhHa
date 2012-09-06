@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author moversti
  */
-public class Tekstikayttoliittyma implements Kayttoliittyma{
+public class Tekstikayttoliittyma implements Kayttoliittyma {
 
     private Pelilauta pelilauta;
     private Voitontestaaja voitontestaaja;
@@ -37,7 +37,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma{
     }
 
     private void kysyKomento() {
-        System.out.print("Komento[X/O/Tallenna/Lataa]: ");
+        System.out.print("Komento[X/O/Tallenna/Lataa/Undo]: ");
         String syote = lukija.nextLine().toUpperCase();
         if (syote.equals("X") || syote.equals("O")) {
             System.out.print("Koordinaatti x: ");
@@ -50,7 +50,12 @@ public class Tekstikayttoliittyma implements Kayttoliittyma{
             } else {
                 ruutu = Ruutu.O;
             }
-            pelilauta.muutaRuutu(Integer.parseInt(xkoord), Integer.parseInt(ykoord), ruutu);
+            int xkoo = Integer.parseInt(xkoord);
+            int ykoo = Integer.parseInt(ykoord);
+            pelilauta.asetetaanUndo(new Siirto(xkoo, ykoo, pelilauta.getRuutu(xkoo, ykoo)));
+            pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
+        } else if (syote.equals("U")) {
+            pelilauta.undo();
         } else {
             pelataan = false;
         }
