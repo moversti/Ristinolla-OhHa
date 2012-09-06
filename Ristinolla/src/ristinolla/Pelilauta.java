@@ -49,12 +49,12 @@ public class Pelilauta {
      * @param ruutu miksi muutetaan?
      */
     public void muutaRuutu(int x, int y, Ruutu ruutu){
-        ruudut[x][y]=ruutu;
+        ruudut[y][x]=ruutu;
     }
 
     @Override
     public String toString() {
-        String paluu ="";
+        String paluu ="   ";
         for (int i = 0; i < leveys; i++) {
             String lisattava=i+"";
             lisattava = String.format("%3s",lisattava);
@@ -62,6 +62,7 @@ public class Pelilauta {
         }
         paluu +="\n";
         for (int i = 0; i < leveys; i++) {
+            paluu+=String.format("%3s", i);
             for (int j = 0; j < korkeus; j++) {
                 paluu+="  "+ruudut[i][j];
             }
@@ -81,6 +82,6 @@ public class Pelilauta {
     }
     
     public void undo(){
-        ruudut[undo.x][undo.y]=undo.ruutu;
+        ruudut[undo.y][undo.x]=undo.ruutu;
     }
 }
