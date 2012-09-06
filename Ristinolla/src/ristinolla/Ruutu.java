@@ -7,5 +7,4 @@ package ristinolla;
  */
 public enum Ruutu {
     _, O, X;
-    
 }

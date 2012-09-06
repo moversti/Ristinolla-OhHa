@@ -7,17 +7,26 @@ package ristinolla;
  */
 public class Pelilauta {
     private Ruutu[][] ruudut;
+    private int leveys;
+    private int korkeus;
 
     /**
      * Täyttää ruudut tyhjällä.
+     * @param leveys laudan leveys
+     * @param korkeus laudan korkeus
      */
-    public Pelilauta() {
-        ruudut = new Ruutu[20][20];
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
+    public Pelilauta(int leveys, int korkeus) {
+        ruudut = new Ruutu[leveys][korkeus];
+        this.leveys = leveys;
+        this.korkeus = korkeus;
+        for (int i = 0; i < leveys; i++) {
+            for (int j = 0; j < korkeus; j++) {
                 ruudut[i][j]=Ruutu._;
             }
         }
+    }
+    public Pelilauta(){
+        this(20,20);
     }
     /**
      *
@@ -32,12 +41,28 @@ public class Pelilauta {
     @Override
     public String toString() {
         String paluu ="";
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                paluu+=ruudut[i][j]+" ";
+        for (int i = 0; i < leveys; i++) {
+            String lisattava=i+"";
+            lisattava = String.format("%3s",lisattava);
+            paluu+=lisattava;
+        }
+        paluu +="\n";
+        for (int i = 0; i < leveys; i++) {
+            for (int j = 0; j < korkeus; j++) {
+                paluu+="  "+ruudut[i][j];
             }
             paluu+="\n";
         }
         return paluu;
+    }
+    
+    /**
+     *
+     * @param x
+     * @param y
+     * @return ruudussa x,y oleva tila
+     */
+    public Ruutu getRuutu(int x, int y){
+        return ruudut[x][y];
     }
 }

@@ -1,13 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ristinolla;
 
 /**
- *
+ * Graaffinen käyttöliittymä
  * @author moversti
  */
-public class Gui {
-    
+public class Gui implements Kayttoliittyma{
+
+    @Override
+    public void start() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    //TODO
 }
