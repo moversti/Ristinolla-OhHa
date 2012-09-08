@@ -12,7 +12,7 @@ public class Voitontestaaja {
 
     public Voitontestaaja(Pelilauta lauta, int rivinPituus) {
         this.lauta = lauta;
-        this.rivinPituus = rivinPituus-1;
+        this.rivinPituus = rivinPituus - 1;
     }
 
     public boolean testaa() {
@@ -20,10 +20,10 @@ public class Voitontestaaja {
     }
 
     private boolean testaaVaaka() {
-        for (int k = 0; k < lauta.getKorkeus(); k++) {
+        for (int k = 0; k < lauta.getKoko(); k++) {
             int laskuri = 0;
             Ruutu edellinen = Ruutu._;
-            for (int l = 0; l < lauta.getLeveys(); l++) {
+            for (int l = 0; l < lauta.getKoko(); l++) {
                 Ruutu ruutu = lauta.getRuutu(l, k);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
@@ -40,10 +40,10 @@ public class Voitontestaaja {
     }
 
     private boolean testaaPysty() {
-        for (int leveys = 0; leveys < lauta.getLeveys(); leveys++) {
+        for (int leveys = 0; leveys < lauta.getKoko(); leveys++) {
             int laskuri = 0;
             Ruutu edellinen = Ruutu._;
-            for (int korkeus = 0; korkeus < lauta.getKorkeus(); korkeus++) {
+            for (int korkeus = 0; korkeus < lauta.getKoko(); korkeus++) {
                 Ruutu ruutu = lauta.getRuutu(leveys, korkeus);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;

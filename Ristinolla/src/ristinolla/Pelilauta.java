@@ -8,22 +8,20 @@ package ristinolla;
 public class Pelilauta {
 
     private Ruutu[][] ruudut;
-    private int leveys;
-    private int korkeus;
+    private int koko;
     private Siirto undo;
 
     /**
      * Täyttää ruudut tyhjällä.
      *
-     * @param leveys laudan leveys
+     * @param koko laudan leveys
      * @param korkeus laudan korkeus
      */
-    public Pelilauta(int leveys, int korkeus) {
-        ruudut = new Ruutu[leveys][korkeus];
-        this.leveys = leveys;
-        this.korkeus = korkeus;
-        for (int i = 0; i < leveys; i++) {
-            for (int j = 0; j < korkeus; j++) {
+    public Pelilauta(int koko) {
+        ruudut = new Ruutu[koko][koko];
+        this.koko = koko;
+        for (int i = 0; i < koko; i++) {
+            for (int j = 0; j < koko; j++) {
                 ruudut[i][j] = Ruutu._;
             }
         }
@@ -31,15 +29,11 @@ public class Pelilauta {
     }
 
     public Pelilauta() {
-        this(20, 20);
+        this(20);
     }
 
-    public int getLeveys() {
-        return leveys;
-    }
-
-    public int getKorkeus() {
-        return korkeus;
+    public int getKoko() {
+        return koko;
     }
 
     public void asetetaanUndo(Siirto siirto) {
@@ -61,9 +55,9 @@ public class Pelilauta {
         String paluu = "   ";
         paluu = xKoordinaattiLuvut(paluu);
         paluu += "\n";
-        for (int i = leveys - 1; i >= 0; i--) {
+        for (int i = koko - 1; i >= 0; i--) {
             paluu += String.format("%3s", i);
-            for (int j = 0; j < korkeus; j++) {
+            for (int j = 0; j < koko; j++) {
                 paluu += "  " + ruudut[i][j];
             }
             paluu+=" "+i;
@@ -81,7 +75,7 @@ public class Pelilauta {
      * @return ruudussa x,y oleva tila
      */
     public Ruutu getRuutu(int x, int y) {
-        return ruudut[x][y];
+        return ruudut[y][x];
     }
 
     public void undo() {
@@ -89,7 +83,7 @@ public class Pelilauta {
     }
 
     private String xKoordinaattiLuvut(String paluu) {
-        for (int i = 0; i < leveys; i++) {
+        for (int i = 0; i < koko; i++) {
             String lisattava = i + "";
             lisattava = String.format("%3s", lisattava);
             paluu += lisattava;
