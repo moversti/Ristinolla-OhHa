@@ -8,6 +8,9 @@ import java.util.Scanner;
  */
 public class Ristinolla {
 
+    /**
+     * Kysyy pelin asetukset (laudan koko ja voittorivin pituus) ennen aloittamista.
+     */
     private static void kysyAsetukset() {
         Scanner lukija = new Scanner(System.in);
         System.out.print("Koko: ");

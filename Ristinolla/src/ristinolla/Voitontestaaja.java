@@ -10,15 +10,27 @@ public class Voitontestaaja {
     private Pelilauta lauta;
     private int rivinPituus;
 
+    /**
+     *
+     * @param lauta
+     * @param rivinPituus voittorivin pituus.
+     */
     public Voitontestaaja(Pelilauta lauta, int rivinPituus) {
         this.lauta = lauta;
         this.rivinPituus = rivinPituus - 1;
     }
 
+    /**
+     * Testaa voittorivit laudalta.
+     * @return
+     */
     public boolean testaa() {
         return (testaaLaskevaVino() || testaaNousevaVino() || testaaPysty() || testaaVaaka());
     }
 
+    /*
+     * testaa vaakarivit.
+     */
     private boolean testaaVaaka() {
         for (int k = 0; k < lauta.getKoko(); k++) {
             int laskuri = 0;
@@ -39,6 +51,9 @@ public class Voitontestaaja {
         return false;
     }
 
+    /*
+     * testaa pystyrivit.
+     */
     private boolean testaaPysty() {
         for (int leveys = 0; leveys < lauta.getKoko(); leveys++) {
             int laskuri = 0;
@@ -59,6 +74,9 @@ public class Voitontestaaja {
         return false;
     }
 
+    /*
+     * testaa laskevaan vinoon menevät rivit.
+     */
     private boolean testaaLaskevaVino() {
         for (int rivi = 0; rivi < lauta.getKoko(); rivi++) {
             int laskuri = 0;
@@ -105,6 +123,9 @@ public class Voitontestaaja {
         return false;
     }
 
+    /*
+     * testaa nousevaan vinoon menevät rivit.
+     */
     private boolean testaaNousevaVino() {
         for (int rivi = 0; rivi < lauta.getKoko(); rivi++) {
             int laskuri = 0;

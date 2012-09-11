@@ -15,14 +15,20 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
     private boolean pelataan;
     private Ruutu voittaja;
 
+    /**
+     * Käynnistää lukijan.
+     *
+     * @param pelilauta
+     * @param rivinPituus voittorivin pituus.
+     */
     public Tekstikayttoliittyma(Pelilauta pelilauta, int rivinPituus) {
         this.pelilauta = pelilauta;
-        this.voitontestaaja = new Voitontestaaja(pelilauta,rivinPituus);
+        this.voitontestaaja = new Voitontestaaja(pelilauta, rivinPituus);
         lukija = new Scanner(System.in);
     }
 
     /**
-     * Aloittaa käyttöliittymän;
+     * Aloittaa käyttöliittymän.
      */
     @Override
     public void start() {
@@ -35,13 +41,19 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
             }
         }
         printtaaLauta();
-        System.out.println("Peli päättyi, "+voittaja+" voittaa!");
+        System.out.println("Peli päättyi, " + voittaja + " voittaa!");
     }
 
+    /*
+     * printtaa laudan.
+     */
     private void printtaaLauta() {
         System.out.println(pelilauta);
     }
 
+    /*
+     * Kysyy komennon ja kutsuu metodeita tekemään hommia.
+     */
     private void kysyKomento() {
         System.out.print("Komento[X/O/Tallenna/Lataa/Undo]: ");
         String syote = lukija.nextLine().toUpperCase();
@@ -60,8 +72,8 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
             int ykoo = Integer.parseInt(ykoord);
             pelilauta.asetetaanUndo(new Siirto(xkoo, ykoo, pelilauta.getRuutu(xkoo, ykoo)));
             pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
-            voittaja=ruutu;
-            pelataan=!voitontestaaja.testaa();
+            voittaja = ruutu;
+            pelataan = !voitontestaaja.testaa();
         } else if (syote.equals("U")) {
             pelilauta.undo();
         } else {

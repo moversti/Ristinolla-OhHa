@@ -7,6 +7,10 @@ package ristinolla;
  */
 public class Pelilauta {
 
+    /**
+     * Pelilaudan 2d ruudukko ruuduille, laudan koko ja undoamisen mahdollistava
+     * siirto-olio.
+     */
     private Ruutu[][] ruudut;
     private int koko;
     private Siirto undo;
@@ -28,14 +32,27 @@ public class Pelilauta {
         undo = new Siirto(0, 0, Ruutu._);
     }
 
+    /**
+     * 20x20 lauta jos parametriton konstruktori.
+     */
     public Pelilauta() {
         this(20);
     }
 
+    /**
+     *
+     * @return laudan koko.
+     */
     public int getKoko() {
         return koko;
     }
 
+    /**
+     * Undo muistaa mitä jossain ruudussa oli ennen kun siihen päälle laitettiin
+     * x tai o.
+     *
+     * @param siirto
+     */
     public void asetetaanUndo(Siirto siirto) {
         undo = siirto;
     }
@@ -50,6 +67,12 @@ public class Pelilauta {
         ruudut[y][x] = ruutu;
     }
 
+    /**
+     * Printtaa laudan jossa koordinaatit alkavat nollasta ja vasemmasta
+     * alakulmasta.
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String paluu = "   ";
@@ -60,7 +83,7 @@ public class Pelilauta {
             for (int j = 0; j < koko; j++) {
                 paluu += "  " + ruudut[i][j];
             }
-            paluu+=" "+i;
+            paluu += " " + i;
             paluu += "\n";
         }
         paluu += "   ";
@@ -78,10 +101,19 @@ public class Pelilauta {
         return ruudut[y][x];
     }
 
+    /**
+     * Peruu edellisen siirron.
+     */
     public void undo() {
         ruudut[undo.y][undo.x] = undo.ruutu;
     }
 
+    /**
+     * Lisää x koordinaatit toStringgiin
+     *
+     * @param paluu
+     * @return
+     */
     private String xKoordinaattiLuvut(String paluu) {
         for (int i = 0; i < koko; i++) {
             String lisattava = i + "";
@@ -89,5 +121,17 @@ public class Pelilauta {
             paluu += lisattava;
         }
         return paluu;
+    }
+
+    /**
+     * Tallentaa pelin.
+     */
+    public void tallenna() {
+    }
+
+    /**
+     * Lataa tallennetun pelin.
+     */
+    public void lataa() {
     }
 }
