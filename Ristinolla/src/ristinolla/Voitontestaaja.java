@@ -60,10 +60,94 @@ public class Voitontestaaja {
     }
 
     private boolean testaaLaskevaVino() {
+        for (int rivi = 0; rivi < lauta.getKoko(); rivi++) {
+            int laskuri = 0;
+            Ruutu edellinen = Ruutu._;
+            int x = 0;
+            int y = rivi;
+            while (y >= 0) {
+                Ruutu ruutu = lauta.getRuutu(x, y);
+                if (ruutu == edellinen && ruutu != Ruutu._) {
+                    laskuri++;
+                    if (laskuri >= rivinPituus) {
+                        return true;
+                    }
+                } else {
+                    laskuri = 0;
+                    edellinen = ruutu;
+
+                }
+                y--;
+                x++;
+            }
+        }
+        for (int sarake = 0; sarake < lauta.getKoko(); sarake++) {
+            int laskuri = 0;
+            Ruutu edellinen = Ruutu._;
+            int x = sarake;
+            int y = lauta.getKoko() - 1;
+            while (x < lauta.getKoko()) {
+                Ruutu ruutu = lauta.getRuutu(x, y);
+                if (ruutu == edellinen && ruutu != Ruutu._) {
+                    laskuri++;
+                    if (laskuri >= rivinPituus) {
+                        return true;
+                    }
+                } else {
+                    laskuri = 0;
+                    edellinen = ruutu;
+
+                }
+                y--;
+                x++;
+            }
+        }
         return false;
     }
 
     private boolean testaaNousevaVino() {
+        for (int rivi = 0; rivi < lauta.getKoko(); rivi++) {
+            int laskuri = 0;
+            Ruutu edellinen = Ruutu._;
+            int x = 0;
+            int y = rivi;
+            while (y < lauta.getKoko()) {
+                Ruutu ruutu = lauta.getRuutu(x, y);
+                if (ruutu == edellinen && ruutu != Ruutu._) {
+                    laskuri++;
+                    if (laskuri >= rivinPituus) {
+                        return true;
+                    }
+                } else {
+                    laskuri = 0;
+                    edellinen = ruutu;
+
+                }
+                y++;
+                x++;
+            }
+        }
+        for (int sarake = 0; sarake < lauta.getKoko(); sarake++) {
+            int laskuri = 0;
+            Ruutu edellinen = Ruutu._;
+            int x = sarake;
+            int y = 0;
+            while (x < lauta.getKoko()) {
+                Ruutu ruutu = lauta.getRuutu(x, y);
+                if (ruutu == edellinen && ruutu != Ruutu._) {
+                    laskuri++;
+                    if (laskuri >= rivinPituus) {
+                        return true;
+                    }
+                } else {
+                    laskuri = 0;
+                    edellinen = ruutu;
+
+                }
+                y++;
+                x++;
+            }
+        }
         return false;
     }
 }
