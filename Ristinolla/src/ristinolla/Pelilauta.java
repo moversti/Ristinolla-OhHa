@@ -53,7 +53,7 @@ public class Pelilauta {
      *
      * @param siirto
      */
-    public void asetetaanUndo(Siirto siirto) {
+    private void asetetaanUndo(Siirto siirto) {
         undo = siirto;
     }
 
@@ -64,6 +64,7 @@ public class Pelilauta {
      * @param ruutu miksi muutetaan?
      */
     public void muutaRuutu(int x, int y, Ruutu ruutu) {
+        asetetaanUndo(new Siirto(x, y, getRuutu(x, y)));
         ruudut[y][x] = ruutu;
     }
 

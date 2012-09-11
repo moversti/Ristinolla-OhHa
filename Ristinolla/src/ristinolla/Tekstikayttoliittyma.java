@@ -70,7 +70,6 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
             }
             int xkoo = Integer.parseInt(xkoord);
             int ykoo = Integer.parseInt(ykoord);
-            pelilauta.asetetaanUndo(new Siirto(xkoo, ykoo, pelilauta.getRuutu(xkoo, ykoo)));
             pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
             voittaja = ruutu;
             pelataan = !voitontestaaja.testaa();
