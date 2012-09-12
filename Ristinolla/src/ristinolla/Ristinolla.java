@@ -28,7 +28,7 @@ public class Ristinolla {
     public static void main(String[] args) {
         kysyAsetukset();
         Pelilauta pelilauta = new Pelilauta(koko);
-        Kayttoliittyma ui = new Tekstikayttoliittyma(pelilauta,rivinPituus);
+        Kayttoliittyma ui = new Gui(pelilauta,rivinPituus);
         ui.start();
     }
 }

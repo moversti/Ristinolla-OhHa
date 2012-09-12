@@ -14,6 +14,7 @@ public class Pelilauta {
     private Ruutu[][] ruudut;
     private int koko;
     private Siirto undo;
+    private Ruutu voittaja;
 
     /**
      * Täyttää ruudut tyhjällä.
@@ -67,6 +68,16 @@ public class Pelilauta {
         asetetaanUndo(new Siirto(x, y, getRuutu(x, y)));
         ruudut[y][x] = ruutu;
     }
+
+    public void setVoittaja(Ruutu voittaja) {
+        this.voittaja = voittaja;
+    }
+
+    public Ruutu getVoittaja() {
+        return voittaja;
+    }
+    
+    
 
     /**
      * Printtaa laudan jossa koordinaatit alkavat nollasta ja vasemmasta

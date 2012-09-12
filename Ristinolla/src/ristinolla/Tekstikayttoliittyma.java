@@ -13,7 +13,6 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
     private Voitontestaaja voitontestaaja;
     private Scanner lukija;
     private boolean pelataan;
-    private Ruutu voittaja;
 
     /**
      * Käynnistää lukijan.
@@ -25,7 +24,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
         this.pelilauta = pelilauta;
         this.voitontestaaja = new Voitontestaaja(pelilauta, rivinPituus);
         lukija = new Scanner(System.in);
-        voittaja = Ruutu.O;
+        pelilauta.setVoittaja(Ruutu.O);
     }
 
     /**
@@ -42,7 +41,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
             }
         }
         printtaaLauta();
-        System.out.println("Peli päättyi, " + voittaja + " voittaa!");
+        System.out.println("Peli päättyi, " + pelilauta.getVoittaja() + " voittaa!");
     }
 
     /*
@@ -77,7 +76,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
                     ruutu = Ruutu.X;
                 } else if (syote.equals("O")) {
                     ruutu = Ruutu.O;
-                } else if (voittaja == Ruutu.O) {
+                } else if (pelilauta.getVoittaja() == Ruutu.O) {
                     ruutu = Ruutu.X;
                 } else {
                     ruutu = Ruutu.O;
@@ -85,7 +84,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
                 int xkoo = Integer.parseInt(xkoord);
                 int ykoo = Integer.parseInt(ykoord);
                 pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
-                voittaja = ruutu;
+                pelilauta.setVoittaja(ruutu);
                 pelataan = !voitontestaaja.testaa();
                 printtaaLauta();
             } while (syote.equals("P")&&pelataan);
