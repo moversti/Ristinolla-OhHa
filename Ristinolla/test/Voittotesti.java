@@ -47,7 +47,7 @@ public class Voittotesti {
     @Test
     public void voittorivitToimii() {
         Pelilauta l = new Pelilauta();
-        Voitontestaaja t = new Voitontestaaja(l,3);
+        Voitontestaaja t = new Voitontestaaja(l, 3);
         assertFalse(t.testaa());
         l.muutaRuutu(0, 0, Ruutu.X);
         l.muutaRuutu(0, 1, Ruutu.X);
@@ -70,24 +70,29 @@ public class Voittotesti {
         l.muutaRuutu(7, 3, Ruutu.X);
         assertTrue(t.testaa());
     }
-    
+
     @Test
-    public void undoToimii(){
+    public void undoToimii() {
         Pelilauta l = new Pelilauta();
         l.muutaRuutu(2, 3, Ruutu.X);
-        assertEquals(Ruutu.X,l.getRuutu(2, 3));
+        assertEquals(Ruutu.X, l.getRuutu(2, 3));
         l.undo();
-        assertEquals(Ruutu._,l.getRuutu(2, 3));
+        assertEquals(Ruutu._, l.getRuutu(2, 3));
     }
-    
+
     @Test
-    public void tallennusJaLatausToimii(){
+    public void tallennusJaLatausToimii() {
         Pelilauta l = new Pelilauta();
+        Voitontestaaja vt = new Voitontestaaja(l, 3);
+        l.setVoitontestaaja(vt);
         l.muutaRuutu(2, 3, Ruutu.X);
         l.tallenna();
         Pelilauta k = new Pelilauta();
+        Voitontestaaja vt2 = new Voitontestaaja(k, 10);
+        k.setVoitontestaaja(vt2);
         k.lataa();
-        assertEquals(Ruutu.X,k.getRuutu(2, 3));
+        assertEquals(Ruutu.X, k.getRuutu(2, 3));
+        assertEquals(3, vt2.getRivinPituus());
     }
 
     @After

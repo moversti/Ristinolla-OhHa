@@ -26,7 +26,6 @@ public class Gui implements Kayttoliittyma, Runnable {
     public void start() {
         SwingUtilities.invokeLater(this);
     }
-    //TODO
 
     @Override
     public void run() {

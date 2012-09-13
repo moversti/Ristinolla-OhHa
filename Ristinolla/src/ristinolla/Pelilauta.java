@@ -1,5 +1,15 @@
 package ristinolla;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Pelilaudalla on listoja joilla on tilana tyhjä, risti tai nolla.
  *
@@ -15,6 +25,7 @@ public class Pelilauta {
     private int koko;
     private Siirto undo;
     private Ruutu voittaja;
+    private Voitontestaaja voitontestaaja;
 
     /**
      * Täyttää ruudut tyhjällä.
@@ -33,6 +44,11 @@ public class Pelilauta {
         undo = new Siirto(0, 0, Ruutu._);
     }
 
+    public void setVoitontestaaja(Voitontestaaja voitontestaaja) {
+        this.voitontestaaja = voitontestaaja;
+    }
+
+
     /**
      * 20x20 lauta jos parametriton konstruktori.
      */
@@ -46,6 +62,16 @@ public class Pelilauta {
      */
     public int getKoko() {
         return koko;
+    }
+
+    public void setKoko(int koko) {
+        this.koko = koko;
+        ruudut=new Ruutu[koko][koko];
+        for (int i = 0; i < koko; i++) {
+            for (int j = 0; j < koko; j++) {
+                ruudut[i][j] = Ruutu._;
+            }
+        }
     }
 
     /**
@@ -76,8 +102,6 @@ public class Pelilauta {
     public Ruutu getVoittaja() {
         return voittaja;
     }
-    
-    
 
     /**
      * Printtaa laudan jossa koordinaatit alkavat nollasta ja vasemmasta
@@ -139,11 +163,65 @@ public class Pelilauta {
      * Tallentaa pelin.
      */
     public void tallenna() {
+        FileWriter kirjoittaja = null;
+        try {
+            kirjoittaja = new FileWriter("RistinollaSave");
+            kirjoittaja.write(koko+","+voitontestaaja.getRivinPituus()+"\n");
+            for (int y = 0; y < koko; y++) {
+                for (int x = 0; x < koko; x++) {
+                    kirjoittaja.append(getRuutu(x, y).toString().charAt(0));
+                }
+                kirjoittaja.append('\n');
+                kirjoittaja.flush();
+            }
+            kirjoittaja.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Pelilauta.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                kirjoittaja.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Pelilauta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
      * Lataa tallennetun pelin.
      */
     public void lataa() {
+        File tallennus = new File("RistinollaSave");
+        try {
+            try (Scanner lukija = new Scanner(tallennus)) {
+                String rivi = lukija.nextLine();
+                String[] split = rivi.split(",");
+                int rivinro = 0;
+                setKoko(Integer.parseInt(split[0]));
+                voitontestaaja.setRivinPituus(Integer.parseInt(split[1]));
+                while (lukija.hasNextLine()) {
+                    rivi = lukija.nextLine();
+                    muutaRivi(rivi, rivinro);
+                    rivinro++;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pelilauta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void muutaRivi(String rivi, int rivinro) {
+        char[] toCharArray = rivi.toCharArray();
+        for (int a = 0; a < toCharArray.length; a++) {
+            switch (toCharArray[a]) {
+                case ('X'):
+                    muutaRuutu(a, rivinro, Ruutu.X);
+                    break;
+                case ('O'):
+                    muutaRuutu(a, rivinro, Ruutu.O);
+                    break;
+                case ('_'):
+                    muutaRuutu(a, rivinro, Ruutu._);
+            }
+        }
     }
 }

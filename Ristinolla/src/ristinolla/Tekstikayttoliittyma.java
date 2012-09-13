@@ -20,9 +20,9 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
      * @param pelilauta
      * @param rivinPituus voittorivin pituus.
      */
-    public Tekstikayttoliittyma(Pelilauta pelilauta, int rivinPituus) {
+    public Tekstikayttoliittyma(Pelilauta pelilauta, int rivinPituus,Voitontestaaja voitontestaaja) {
         this.pelilauta = pelilauta;
-        this.voitontestaaja = new Voitontestaaja(pelilauta, rivinPituus);
+        this.voitontestaaja = voitontestaaja;
         lukija = new Scanner(System.in);
         pelilauta.setVoittaja(Ruutu.O);
     }
@@ -87,9 +87,14 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
                 pelilauta.setVoittaja(ruutu);
                 pelataan = !voitontestaaja.testaa();
                 printtaaLauta();
-            } while (syote.equals("P")&&pelataan);
+            } while (syote.equals("P") && pelataan);
         } else if (syote.equals("U")) {
             pelilauta.undo();
+        } else if (syote.equals("T")) {
+            pelilauta.tallenna();
+            pelataan=false;
+        } else if (syote.equals("L")) {
+            pelilauta.lataa();
         } else {
             pelataan = false;
         }
