@@ -27,11 +27,10 @@ public class Voitontestaaja {
     public void setRivinPituus(int rivinPituus) {
         this.rivinPituus = rivinPituus;
     }
-    
-    
 
     /**
      * Testaa voittorivit laudalta.
+     *
      * @return
      */
     public boolean testaa() {
@@ -49,7 +48,7 @@ public class Voitontestaaja {
                 Ruutu ruutu = lauta.getRuutu(l, k);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
-                    if (laskuri >= rivinPituus-1) {
+                    if (laskuri >= rivinPituus - 1) {
                         return true;
                     }
                 } else {
@@ -72,7 +71,7 @@ public class Voitontestaaja {
                 Ruutu ruutu = lauta.getRuutu(leveys, korkeus);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
-                    if (laskuri >= rivinPituus-1) {
+                    if (laskuri >= rivinPituus - 1) {
                         return true;
                     }
                 } else {
@@ -97,7 +96,7 @@ public class Voitontestaaja {
                 Ruutu ruutu = lauta.getRuutu(x, y);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
-                    if (laskuri >= rivinPituus-1) {
+                    if (laskuri >= rivinPituus - 1) {
                         return true;
                     }
                 } else {
@@ -118,7 +117,7 @@ public class Voitontestaaja {
                 Ruutu ruutu = lauta.getRuutu(x, y);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
-                    if (laskuri >= rivinPituus-1) {
+                    if (laskuri >= rivinPituus - 1) {
                         return true;
                     }
                 } else {
@@ -146,7 +145,7 @@ public class Voitontestaaja {
                 Ruutu ruutu = lauta.getRuutu(x, y);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
-                    if (laskuri >= rivinPituus-1) {
+                    if (laskuri >= rivinPituus - 1) {
                         return true;
                     }
                 } else {
@@ -167,7 +166,7 @@ public class Voitontestaaja {
                 Ruutu ruutu = lauta.getRuutu(x, y);
                 if (ruutu == edellinen && ruutu != Ruutu._) {
                     laskuri++;
-                    if (laskuri >= rivinPituus-1) {
+                    if (laskuri >= rivinPituus - 1) {
                         return true;
                     }
                 } else {
