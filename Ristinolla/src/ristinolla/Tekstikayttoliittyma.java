@@ -20,7 +20,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
      * @param pelilauta
      * @param rivinPituus voittorivin pituus.
      */
-    public Tekstikayttoliittyma(Pelilauta pelilauta, int rivinPituus,Voitontestaaja voitontestaaja) {
+    public Tekstikayttoliittyma(Pelilauta pelilauta, int rivinPituus, Voitontestaaja voitontestaaja) {
         this.pelilauta = pelilauta;
         this.voitontestaaja = voitontestaaja;
         lukija = new Scanner(System.in);
@@ -41,14 +41,18 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
             }
         }
         printtaaLauta();
-        System.out.println("Peli päättyi, " + pelilauta.getVoittaja() + " voittaa!");
+        System.out.println("Kiitos pelaamisesta!");
+        if (pelilauta.isVoittajaSelvilla()) {
+            System.out.println(pelilauta.getVoittaja() + " voittaa!");
+        }
+
     }
 
     /*
      * printtaa laudan.
      */
     private void printtaaLauta() {
-        System.out.println(pelilauta);
+        System.out.println("\n" + pelilauta + "\n");
     }
 
     /*
@@ -81,22 +85,39 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
                 } else {
                     ruutu = Ruutu.O;
                 }
-                int xkoo = Integer.parseInt(xkoord);
-                int ykoo = Integer.parseInt(ykoord);
-                pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
+                int xkoo = 0;
+                int ykoo = 0;
+                try {
+                    xkoo = Integer.parseInt(xkoord);
+                    ykoo = Integer.parseInt(ykoord);
+                } catch (NumberFormatException numberFormatException) {
+                    System.out.println("!!!!! Koordinaatit ovat kokonaislukuja, ääliö !!!!!");
+                    break;
+                }
+                try {
+                    pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
+                } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+                    System.out.println("!!!!! Koordinaatit laudan ulkopuolella !!!!!");
+                    break;
+                }
                 pelilauta.setVoittaja(ruutu);
                 pelataan = !voitontestaaja.testaa();
+                pelilauta.setVoittajaSelvilla(voitontestaaja.testaa());
                 printtaaLauta();
             } while (syote.equals("P") && pelataan);
         } else if (syote.equals("U")) {
             pelilauta.undo();
         } else if (syote.equals("T")) {
             pelilauta.tallenna();
-            pelataan=false;
+            pelataan = false;
         } else if (syote.equals("L")) {
             pelilauta.lataa();
         } else {
-            pelataan = false;
+            System.out.println("Lopetetaan peli?");
+            String lopetus = lukija.nextLine().toUpperCase();
+            if (lopetus.equals("K") || lopetus.equals("Y")) {
+                pelataan = false;
+            }
         }
     }
 }

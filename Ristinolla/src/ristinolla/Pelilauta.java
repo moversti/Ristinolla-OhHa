@@ -17,6 +17,14 @@ import java.util.logging.Logger;
  */
 public class Pelilauta {
 
+    public boolean isVoittajaSelvilla() {
+        return voittajaSelvilla;
+    }
+
+    public void setVoittajaSelvilla(boolean voittajaSelvilla) {
+        this.voittajaSelvilla = voittajaSelvilla;
+    }
+
     /**
      * Pelilaudan 2d ruudukko ruuduille, laudan koko ja undoamisen mahdollistava
      * siirto-olio.
@@ -26,6 +34,7 @@ public class Pelilauta {
     private Siirto undo;
     private Ruutu voittaja;
     private Voitontestaaja voitontestaaja;
+    private boolean voittajaSelvilla;
 
     /**
      * Täyttää ruudut tyhjällä.
@@ -42,6 +51,7 @@ public class Pelilauta {
             }
         }
         undo = new Siirto(0, 0, Ruutu._);
+        voittajaSelvilla = false;
     }
 
     public void setVoitontestaaja(Voitontestaaja voitontestaaja) {
@@ -90,7 +100,7 @@ public class Pelilauta {
      * @param y y-koordinaatti
      * @param ruutu miksi muutetaan?
      */
-    public void muutaRuutu(int x, int y, Ruutu ruutu) {
+    public void muutaRuutu(int x, int y, Ruutu ruutu) throws ArrayIndexOutOfBoundsException{
         asetetaanUndo(new Siirto(x, y, getRuutu(x, y)));
         ruudut[y][x] = ruutu;
     }
