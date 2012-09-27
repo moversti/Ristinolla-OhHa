@@ -5,9 +5,15 @@ package ristinolla;
  *
  * @author moversti
  */
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
@@ -17,8 +23,8 @@ public class Gui implements Kayttoliittyma, Runnable {
     private Pelilauta pl;
     private Voitontestaaja vt;
 
-    public Gui(Pelilauta pelilauta, int rivinPituus) {
-        vt = new Voitontestaaja(pelilauta, rivinPituus);
+    public Gui(Pelilauta pelilauta, int rivinPituus, Voitontestaaja vt) {
+        this.vt = vt;
         this.pl = pelilauta;
     }
 
@@ -31,7 +37,7 @@ public class Gui implements Kayttoliittyma, Runnable {
     public void run() {
 
         frame = new JFrame("Ristinolla");
-        frame.setPreferredSize(new Dimension(200, 100));
+        frame.setPreferredSize(new Dimension(600, 600));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,6 +48,17 @@ public class Gui implements Kayttoliittyma, Runnable {
     }
 
     private void luoKomponentit(Container container) {
+        container.setLayout(new BorderLayout());
+        JPanel lauta = new JPanel();
+        lauta.setLayout(new GridLayout(pl.getKoko(), pl.getKoko()));
+        for (int i = 0; i < pl.getKoko(); i++) {
+            for (int j = 0; j < pl.getKoko(); j++) {
+                JButton jb = new JButton();
+                lauta.add(jb);
+            }
+        }
+        lauta.setVisible(true);
+        container.add(lauta,BorderLayout.CENTER);
     }
 
     public JFrame getFrame() {
