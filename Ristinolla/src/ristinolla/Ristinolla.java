@@ -49,13 +49,17 @@ public class Ristinolla {
                 System.out.println("Luku väliltä 3 - laudan koko, kiitos!");
             }
         }
-    }
+    }    
+    
     /**
-     * @param args the command line arguments
+     * Väliaikaiseta tallennuspaikat laudan koolle ja rivin pituudelle.
      */
     public static int koko;
     public static int rivinPituus;
-
+    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         kysyAsetukset();
         Pelilauta pelilauta = new Pelilauta(koko);

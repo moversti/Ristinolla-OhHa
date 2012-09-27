@@ -1,7 +1,7 @@
 package ristinolla;
 
 /**
- * Interface käyttöliittymälle.
+ * Rajapinta käyttöliittymille.
  * @author moversti
  */
 public interface Kayttoliittyma {

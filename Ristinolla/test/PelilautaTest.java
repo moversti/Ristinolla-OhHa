@@ -1,14 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 import ristinolla.Pelilauta;
 import ristinolla.Ruutu;
 import ristinolla.Voitontestaaja;
@@ -18,31 +9,10 @@ import ristinolla.Voitontestaaja;
  * @author moversti
  */
 public class PelilautaTest {
-
-    public PelilautaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-
+    
+    /**
+     * Testaa undoamisen toimivuuden.
+     */
     @Test
     public void undoTest() {
         Pelilauta p = new Pelilauta();
@@ -55,6 +25,9 @@ public class PelilautaTest {
         assertEquals(Ruutu._, p.getRuutu(3, 5));
     }
 
+    /**
+     * Testaa tallennuksen ja latauksen toimivuuden.
+     */
     @Test
     public void tallennusJaLatausTest() {
         Pelilauta l = new Pelilauta();

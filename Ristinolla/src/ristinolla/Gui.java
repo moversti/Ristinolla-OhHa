@@ -20,20 +20,31 @@ import javax.swing.SwingUtilities;
 public class Gui implements Kayttoliittyma, Runnable {
 
     private JFrame frame;
-    private Pelilauta pl;
-    private Voitontestaaja vt;
+    private Pelilauta pelilauta;
+    private Voitontestaaja voitontestaaja;
 
-    public Gui(Pelilauta pelilauta, Voitontestaaja vt) {
-        this.vt = vt;
-        this.pl = pelilauta;
+    /**
+     * Ihan perus konstruktori joka laittaa parametrit omiin kenttiinsä
+     * @param pelilauta
+     * @param voitontestaaja
+     */
+    public Gui(Pelilauta pelilauta, Voitontestaaja voitontestaaja) {
+        this.voitontestaaja = voitontestaaja;
+        this.pelilauta = pelilauta;
     }
 
     @Override
+    /**
+     * Runnaa itsensä.
+     */
     public void start() {
         SwingUtilities.invokeLater(this);
     }
 
     @Override
+    /**
+     * Luo ikkunan yms perusjutut.
+     */
     public void run() {
 
         frame = new JFrame("Ristinolla");
@@ -47,12 +58,16 @@ public class Gui implements Kayttoliittyma, Runnable {
         frame.setVisible(true);
     }
 
+    /**
+     * Luo frameen komponentit.
+     * @param container
+     */
     private void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
         JPanel lauta = new JPanel();
-        lauta.setLayout(new GridLayout(pl.getKoko(), pl.getKoko()));
-        for (int i = 0; i < pl.getKoko(); i++) {
-            for (int j = 0; j < pl.getKoko(); j++) {
+        lauta.setLayout(new GridLayout(pelilauta.getKoko(), pelilauta.getKoko()));
+        for (int i = 0; i < pelilauta.getKoko(); i++) {
+            for (int j = 0; j < pelilauta.getKoko(); j++) {
                 JButton jb = new JButton();
                 lauta.add(jb);
             }
@@ -61,6 +76,9 @@ public class Gui implements Kayttoliittyma, Runnable {
         container.add(lauta,BorderLayout.CENTER);
     }
 
+    /**
+     * @return frame
+     */
     public JFrame getFrame() {
         return frame;
     }

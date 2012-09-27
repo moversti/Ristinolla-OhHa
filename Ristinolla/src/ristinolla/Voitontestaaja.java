@@ -20,10 +20,18 @@ public class Voitontestaaja {
         this.rivinPituus = rivinPituus;
     }
 
+    /**
+     * 
+     * @return rivin pituus.
+     */
     public int getRivinPituus() {
         return rivinPituus;
     }
 
+    /**
+     * 
+     * @param rivinPituus 
+     */
     public void setRivinPituus(int rivinPituus) {
         this.rivinPituus = rivinPituus;
     }
@@ -31,13 +39,13 @@ public class Voitontestaaja {
     /**
      * Testaa voittorivit laudalta.
      *
-     * @return
+     * @return true jos voittorivi löytyi.
      */
     public boolean testaa() {
         return (testaaLaskevaVino() || testaaNousevaVino() || testaaPysty() || testaaVaaka());
     }
 
-    /*
+    /**
      * testaa vaakarivit.
      */
     private boolean testaaVaaka() {
@@ -60,7 +68,7 @@ public class Voitontestaaja {
         return false;
     }
 
-    /*
+    /**
      * testaa pystyrivit.
      */
     private boolean testaaPysty() {
@@ -83,7 +91,7 @@ public class Voitontestaaja {
         return false;
     }
 
-    /*
+    /**
      * testaa laskevaan vinoon menevät rivit.
      */
     private boolean testaaLaskevaVino() {
@@ -132,7 +140,7 @@ public class Voitontestaaja {
         return false;
     }
 
-    /*
+    /**
      * testaa nousevaan vinoon menevät rivit.
      */
     private boolean testaaNousevaVino() {

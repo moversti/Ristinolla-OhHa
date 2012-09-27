@@ -16,17 +16,27 @@ import java.util.logging.Logger;
  * @author moversti
  */
 public class Pelilauta {
-
+    
+    /**
+     * 
+     * @return voittajaSelvilla
+     */
     public boolean isVoittajaSelvilla() {
         return voittajaSelvilla;
     }
 
+    /**
+     * 
+     * @param voittajaSelvilla 
+     */
     public void setVoittajaSelvilla(boolean voittajaSelvilla) {
         this.voittajaSelvilla = voittajaSelvilla;
     }
+    
     /**
-     * Pelilaudan 2d ruudukko ruuduille, laudan koko ja undoamisen mahdollistava
-     * siirto-olio.
+     * Pelilaudan 2d ruudukko ruuduille, laudan koko, undoamisen mahdollistava
+     * siirto-olio, Ruutu-olio josta pelin lopussa katsotaan voittaja, voitontestaaja
+     * ja totuusarvo sille että onko voittaja selvillä.
      */
     private Ruutu[][] ruudut;
     private int koko;
@@ -42,17 +52,15 @@ public class Pelilauta {
      * @param korkeus laudan korkeus
      */
     public Pelilauta(int koko) {
-        ruudut = new Ruutu[koko][koko];
-        this.koko = koko;
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                ruudut[i][j] = Ruutu._;
-            }
-        }
+        setKoko(koko);
         undo = new Siirto(0, 0, Ruutu._);
         voittajaSelvilla = false;
     }
 
+    /**
+     * Voitontestaajan asetus koska konstruktorissa sitä ei voi tehdä koska lauta luodaan ennen voitontestaajaa.
+     * @param voitontestaaja 
+     */
     public void setVoitontestaaja(Voitontestaaja voitontestaaja) {
         this.voitontestaaja = voitontestaaja;
     }
@@ -72,7 +80,11 @@ public class Pelilauta {
         return koko;
     }
 
-    public void setKoko(int koko) {
+    /**
+     * Muuttaa laudan koon ja tyhjentää sen.
+     * @param koko laudan uusi koko.
+     */
+    public final void setKoko(int koko) {
         this.koko = koko;
         ruudut = new Ruutu[koko][koko];
         for (int i = 0; i < koko; i++) {
@@ -97,6 +109,7 @@ public class Pelilauta {
      * @param x x-koordinaatti
      * @param y y-koordinaatti
      * @param ruutu miksi muutetaan?
+     * @return true jos muutos onnistui, false jos tapahtui virhe.
      */
     public boolean muutaRuutu(int x, int y, Ruutu ruutu) {
         if(x<0||y<0||x>=getKoko()||y>=getKoko()){
@@ -107,10 +120,18 @@ public class Pelilauta {
         return true;
     }
 
+    /**
+     * Asettaa voittajan.
+     * @param voittaja 
+     */
     public void setVoittaja(Ruutu voittaja) {
         this.voittaja = voittaja;
     }
 
+    /**
+     * 
+     * @return voittaja.
+     */
     public Ruutu getVoittaja() {
         return voittaja;
     }
@@ -140,7 +161,8 @@ public class Pelilauta {
     }
 
     /**
-     *
+     * Palauttaa ruudun tilan.
+     * 
      * @param x
      * @param y
      * @return ruudussa x,y oleva tila
@@ -172,7 +194,7 @@ public class Pelilauta {
     }
 
     /**
-     * Tallentaa pelin.
+     * Tallentaa pelin tiedostoon RistinollaSave.
      */
     public void tallenna() {
         FileWriter kirjoittaja = null;
@@ -227,6 +249,11 @@ public class Pelilauta {
         }
     }
 
+    /**
+     * Muuttaa laudan ruutuja tallennuksesta luetun rivin ja annetun rivinumeron mukaan.
+     * @param rivi scannerilla otettu rivi tallennustiedostosta.
+     * @param rivinro 
+     */
     private void muutaRivi(String rivi, int rivinro) {
         char[] toCharArray = rivi.toCharArray();
         for (int a = 0; a < toCharArray.length; a++) {

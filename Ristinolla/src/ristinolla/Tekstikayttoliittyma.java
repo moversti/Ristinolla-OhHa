@@ -48,14 +48,14 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
 
     }
 
-    /*
+    /**
      * printtaa laudan.
      */
     private void printtaaLauta() {
         System.out.println("\n" + pelilauta + "\n");
     }
 
-    /*
+    /**
      * Kysyy komennon ja kutsuu metodeita tekemään hommia.
      */
     private void kysyKomento() {

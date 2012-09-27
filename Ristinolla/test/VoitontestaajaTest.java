@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,30 +15,9 @@ import ristinolla.Voitontestaaja;
  */
 public class VoitontestaajaTest {
 
-    public VoitontestaajaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-
+    /**
+     * Testaa että voitontestaaja huomaa pystyyn menevän voittorivin.
+     */
     @Test
     public void pystyriviTest() {
         Pelilauta l = new Pelilauta();
@@ -53,7 +28,10 @@ public class VoitontestaajaTest {
         l.muutaRuutu(0, 2, Ruutu.X);
         assertTrue(t.testaa());
     }
-    
+
+    /**
+     * Testaa että voitontestaaja huomaa vaakaan menevän voittorivin.
+     */
     @Test
     public void vaakariviTest() {
         Pelilauta l = new Pelilauta();
@@ -65,6 +43,9 @@ public class VoitontestaajaTest {
         assertTrue(t.testaa());
     }
 
+    /**
+     * Testaa että voitontestaaja huomaa vinoon menevän voittorivin.
+     */
     @Test
     public void nousevaVinoriviTest() {
         Pelilauta l = new Pelilauta();
@@ -75,7 +56,10 @@ public class VoitontestaajaTest {
         l.muutaRuutu(2, 2, Ruutu.X);
         assertTrue(t.testaa());
     }
-    
+
+    /**
+     * Testaa että voitontestaaja huomaa vinoon menevän voittorivin.
+     */
     @Test
     public void laskevaVinoriviTest() {
         Pelilauta l = new Pelilauta();
