@@ -24,7 +24,6 @@ public class Pelilauta {
     public void setVoittajaSelvilla(boolean voittajaSelvilla) {
         this.voittajaSelvilla = voittajaSelvilla;
     }
-
     /**
      * Pelilaudan 2d ruudukko ruuduille, laudan koko ja undoamisen mahdollistava
      * siirto-olio.
@@ -58,7 +57,6 @@ public class Pelilauta {
         this.voitontestaaja = voitontestaaja;
     }
 
-
     /**
      * 20x20 lauta jos parametriton konstruktori.
      */
@@ -76,7 +74,7 @@ public class Pelilauta {
 
     public void setKoko(int koko) {
         this.koko = koko;
-        ruudut=new Ruutu[koko][koko];
+        ruudut = new Ruutu[koko][koko];
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 ruudut[i][j] = Ruutu._;
@@ -100,7 +98,7 @@ public class Pelilauta {
      * @param y y-koordinaatti
      * @param ruutu miksi muutetaan?
      */
-    public void muutaRuutu(int x, int y, Ruutu ruutu) throws ArrayIndexOutOfBoundsException{
+    public void muutaRuutu(int x, int y, Ruutu ruutu) throws ArrayIndexOutOfBoundsException {
         asetetaanUndo(new Siirto(x, y, getRuutu(x, y)));
         ruudut[y][x] = ruutu;
     }
@@ -174,9 +172,12 @@ public class Pelilauta {
      */
     public void tallenna() {
         FileWriter kirjoittaja = null;
+        if (voitontestaaja == null) {
+            throw new IllegalStateException("Ei voitontestaajaa");
+        }
         try {
             kirjoittaja = new FileWriter("RistinollaSave");
-            kirjoittaja.write(koko+","+voitontestaaja.getRivinPituus()+"\n");
+            kirjoittaja.write(koko + "," + voitontestaaja.getRivinPituus() + "\n");
             for (int y = 0; y < koko; y++) {
                 for (int x = 0; x < koko; x++) {
                     kirjoittaja.append(getRuutu(x, y).toString().charAt(0));
@@ -201,6 +202,9 @@ public class Pelilauta {
      */
     public void lataa() {
         File tallennus = new File("RistinollaSave");
+        if (voitontestaaja == null) {
+            throw new IllegalStateException("Ei voitontestaajaa");
+        }
         try {
             try (Scanner lukija = new Scanner(tallennus)) {
                 String rivi = lukija.nextLine();
