@@ -5,5 +5,8 @@ package ristinolla;
  * @author moversti
  */
 public interface Kayttoliittyma {
+    /**
+     * Käynnistää käyttöliittymän.
+     */
     public void start();
 }

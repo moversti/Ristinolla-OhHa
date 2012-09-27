@@ -6,5 +6,16 @@ package ristinolla;
  * @author moversti
  */
 public enum Ruutu {
-    _, O, X;
+    /**
+     * Tyhjä.
+     */
+    _,
+    /**
+     * Nolla.
+     */
+    O,
+    /**
+     * Risti.
+     */
+    X;
 }

@@ -52,9 +52,12 @@ public class Ristinolla {
     }    
     
     /**
-     * Väliaikaiseta tallennuspaikat laudan koolle ja rivin pituudelle.
+     * Väliaikainen tallennuspaikka laudan koolle.
      */
     public static int koko;
+    /**
+     * Väliaikainen tallennuspaikka rivin pituudelle.
+     */
     public static int rivinPituus;
     
     /**

@@ -49,7 +49,6 @@ public class Pelilauta {
      * Täyttää ruudut tyhjällä.
      *
      * @param koko laudan leveys
-     * @param korkeus laudan korkeus
      */
     public Pelilauta(int koko) {
         setKoko(koko);

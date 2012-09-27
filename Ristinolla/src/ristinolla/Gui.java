@@ -1,10 +1,5 @@
 package ristinolla;
 
-/**
- * Graaffinen käyttöliittymä
- *
- * @author moversti
- */
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -17,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+/**
+ * Graaffinen käyttöliittymä
+ * @author arvoitusmies
+ */
 public class Gui implements Kayttoliittyma, Runnable {
 
     private JFrame frame;
@@ -33,10 +32,10 @@ public class Gui implements Kayttoliittyma, Runnable {
         this.pelilauta = pelilauta;
     }
 
-    @Override
     /**
      * Runnaa itsensä.
      */
+    @Override
     public void start() {
         SwingUtilities.invokeLater(this);
     }

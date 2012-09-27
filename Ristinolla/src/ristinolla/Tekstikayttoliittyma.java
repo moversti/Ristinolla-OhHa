@@ -18,7 +18,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
      * Käynnistää lukijan.
      *
      * @param pelilauta
-     * @param rivinPituus voittorivin pituus.
+     * @param voitontestaaja 
      */
     public Tekstikayttoliittyma(Pelilauta pelilauta, Voitontestaaja voitontestaaja) {
         this.pelilauta = pelilauta;

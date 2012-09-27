@@ -5,8 +5,17 @@ package ristinolla;
  * @author moversti
  */
 public class Siirto {
+    /**
+     * X-koordinaatti.
+     */
     public int x;
+    /**
+     * Y-koordinaatti.
+     */
     public int y;
+    /**
+     * Ruutu joka oli ennen kohdassa x,y.
+     */
     public Ruutu ruutu;
 
     /**
