@@ -23,7 +23,7 @@ public class Gui implements Kayttoliittyma, Runnable {
     private Pelilauta pl;
     private Voitontestaaja vt;
 
-    public Gui(Pelilauta pelilauta, int rivinPituus, Voitontestaaja vt) {
+    public Gui(Pelilauta pelilauta, Voitontestaaja vt) {
         this.vt = vt;
         this.pl = pelilauta;
     }

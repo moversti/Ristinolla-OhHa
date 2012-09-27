@@ -98,9 +98,13 @@ public class Pelilauta {
      * @param y y-koordinaatti
      * @param ruutu miksi muutetaan?
      */
-    public void muutaRuutu(int x, int y, Ruutu ruutu) throws ArrayIndexOutOfBoundsException {
+    public boolean muutaRuutu(int x, int y, Ruutu ruutu) {
+        if(x<0||y<0||x>=getKoko()||y>=getKoko()){
+            return false;
+        }
         asetetaanUndo(new Siirto(x, y, getRuutu(x, y)));
         ruudut[y][x] = ruutu;
+        return true;
     }
 
     public void setVoittaja(Ruutu voittaja) {

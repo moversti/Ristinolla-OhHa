@@ -20,7 +20,7 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
      * @param pelilauta
      * @param rivinPituus voittorivin pituus.
      */
-    public Tekstikayttoliittyma(Pelilauta pelilauta, int rivinPituus, Voitontestaaja voitontestaaja) {
+    public Tekstikayttoliittyma(Pelilauta pelilauta, Voitontestaaja voitontestaaja) {
         this.pelilauta = pelilauta;
         this.voitontestaaja = voitontestaaja;
         lukija = new Scanner(System.in);
@@ -94,15 +94,15 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
                     System.out.println("!!!!! Koordinaatit ovat kokonaislukuja, ääliö !!!!!");
                     break;
                 }
-                try {
-                    pelilauta.muutaRuutu(xkoo, ykoo, ruutu);
-                } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
+                if (!pelilauta.muutaRuutu(xkoo, ykoo, ruutu)) {
                     System.out.println("!!!!! Koordinaatit laudan ulkopuolella !!!!!");
                     break;
                 }
+
                 pelilauta.setVoittaja(ruutu);
-                pelataan = !voitontestaaja.testaa();
-                pelilauta.setVoittajaSelvilla(voitontestaaja.testaa());
+                boolean testi = voitontestaaja.testaa();
+                pelataan = !testi;
+                pelilauta.setVoittajaSelvilla(testi);
                 printtaaLauta();
             } while (syote.equals("P") && pelataan);
         } else if (syote.equals("U")) {
