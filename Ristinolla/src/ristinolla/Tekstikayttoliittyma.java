@@ -85,8 +85,8 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
                 } else {
                     ruutu = Ruutu.O;
                 }
-                int xkoo = 0;
-                int ykoo = 0;
+                int xkoo;
+                int ykoo;
                 try {
                     xkoo = Integer.parseInt(xkoord);
                     ykoo = Integer.parseInt(ykoord);

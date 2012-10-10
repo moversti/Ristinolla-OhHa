@@ -8,15 +8,15 @@ public class Siirto {
     /**
      * X-koordinaatti.
      */
-    public int x;
+     int x;
     /**
      * Y-koordinaatti.
      */
-    public int y;
+     int y;
     /**
      * Ruutu joka oli ennen kohdassa x,y.
      */
-    public Ruutu ruutu;
+     Ruutu ruutu;
 
     /**
      * Perus konstruktori.

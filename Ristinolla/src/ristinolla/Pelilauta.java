@@ -1,12 +1,16 @@
 package ristinolla;
 
+import com.sun.xml.internal.messaging.saaj.util.CharWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Pelilaudalla on listoja joilla on tilana tyhjä, risti tai nolla.
@@ -83,7 +87,7 @@ public class Pelilauta {
      *
      * @param koko laudan uusi koko.
      */
-    public final void setKoko(int koko) {
+    public void setKoko(int koko) {
         this.koko = koko;
         ruudut = new Ruutu[koko][koko];
         for (int i = 0; i < koko; i++) {
@@ -149,9 +153,11 @@ public class Pelilauta {
         paluu += "\n";
         for (int i = koko - 1; i >= 0; i--) {
             paluu += String.format("%3s", i);
+            StringBuilder buffer = new StringBuilder();
             for (int j = 0; j < koko; j++) {
-                paluu += "  " + ruudut[i][j];
+                buffer.append("  ").append(ruudut[i][j]);
             }
+            paluu+=buffer.toString();
             paluu += " " + i;
             paluu += "\n";
         }
@@ -185,11 +191,13 @@ public class Pelilauta {
      * @return
      */
     private String xKoordinaattiLuvut(String paluu) {
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < koko; i++) {
             String lisattava = i + "";
             lisattava = String.format("%3s", lisattava);
-            paluu += lisattava;
+            builder.append(lisattava);
         }
+        paluu+=builder.toString();
         return paluu;
     }
 
@@ -219,7 +227,7 @@ public class Pelilauta {
                 kirjoittaja.close();
             } catch (IOException ex) {
                 Logger.getLogger(Pelilauta.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } 
         }
     }
 
@@ -267,6 +275,9 @@ public class Pelilauta {
                     break;
                 case ('_'):
                     muutaRuutu(a, rivinro, Ruutu._);
+                    break;
+                default:
+                    System.out.println("Jotain vikaa tallennuksessa");
             }
         }
     }

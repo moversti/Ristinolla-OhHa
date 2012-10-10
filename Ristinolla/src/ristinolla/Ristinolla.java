@@ -54,11 +54,11 @@ public class Ristinolla {
     /**
      * Väliaikainen tallennuspaikka laudan koolle.
      */
-    public static int koko;
+     static int koko;
     /**
      * Väliaikainen tallennuspaikka rivin pituudelle.
      */
-    public static int rivinPituus;
+     static int rivinPituus;
     
     /**
      * @param args the command line arguments
