@@ -68,7 +68,7 @@ public class Ristinolla {
         Pelilauta pelilauta = new Pelilauta(koko);
         Voitontestaaja vt = new Voitontestaaja(pelilauta, rivinPituus);
         pelilauta.setVoitontestaaja(vt);
-        Kayttoliittyma ui = new Gui(pelilauta, vt);
+        Kayttoliittyma ui = new Tekstikayttoliittyma(pelilauta, vt);
         ui.start();
     }
 }

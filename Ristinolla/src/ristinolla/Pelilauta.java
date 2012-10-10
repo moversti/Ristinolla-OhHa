@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,9 +14,9 @@ import java.util.logging.Logger;
  * @author moversti
  */
 public class Pelilauta {
-    
+
     /**
-     * 
+     *
      * @return voittajaSelvilla
      */
     public boolean isVoittajaSelvilla() {
@@ -26,17 +24,16 @@ public class Pelilauta {
     }
 
     /**
-     * 
-     * @param voittajaSelvilla 
+     *
+     * @param voittajaSelvilla
      */
     public void setVoittajaSelvilla(boolean voittajaSelvilla) {
         this.voittajaSelvilla = voittajaSelvilla;
     }
-    
     /**
      * Pelilaudan 2d ruudukko ruuduille, laudan koko, undoamisen mahdollistava
-     * siirto-olio, Ruutu-olio josta pelin lopussa katsotaan voittaja, voitontestaaja
-     * ja totuusarvo sille että onko voittaja selvillä.
+     * siirto-olio, Ruutu-olio josta pelin lopussa katsotaan voittaja,
+     * voitontestaaja ja totuusarvo sille että onko voittaja selvillä.
      */
     private Ruutu[][] ruudut;
     private int koko;
@@ -57,8 +54,10 @@ public class Pelilauta {
     }
 
     /**
-     * Voitontestaajan asetus koska konstruktorissa sitä ei voi tehdä koska lauta luodaan ennen voitontestaajaa.
-     * @param voitontestaaja 
+     * Voitontestaajan asetus koska konstruktorissa sitä ei voi tehdä koska
+     * lauta luodaan ennen voitontestaajaa.
+     *
+     * @param voitontestaaja
      */
     public void setVoitontestaaja(Voitontestaaja voitontestaaja) {
         this.voitontestaaja = voitontestaaja;
@@ -81,6 +80,7 @@ public class Pelilauta {
 
     /**
      * Muuttaa laudan koon ja tyhjentää sen.
+     *
      * @param koko laudan uusi koko.
      */
     public final void setKoko(int koko) {
@@ -111,7 +111,7 @@ public class Pelilauta {
      * @return true jos muutos onnistui, false jos tapahtui virhe.
      */
     public boolean muutaRuutu(int x, int y, Ruutu ruutu) {
-        if(x<0||y<0||x>=getKoko()||y>=getKoko()){
+        if (x < 0 || y < 0 || x >= getKoko() || y >= getKoko()) {
             return false;
         }
         asetetaanUndo(new Siirto(x, y, getRuutu(x, y)));
@@ -121,14 +121,15 @@ public class Pelilauta {
 
     /**
      * Asettaa voittajan.
-     * @param voittaja 
+     *
+     * @param voittaja
      */
     public void setVoittaja(Ruutu voittaja) {
         this.voittaja = voittaja;
     }
 
     /**
-     * 
+     *
      * @return voittaja.
      */
     public Ruutu getVoittaja() {
@@ -161,7 +162,7 @@ public class Pelilauta {
 
     /**
      * Palauttaa ruudun tilan.
-     * 
+     *
      * @param x
      * @param y
      * @return ruudussa x,y oleva tila
@@ -231,17 +232,16 @@ public class Pelilauta {
             throw new IllegalStateException("Ei voitontestaajaa");
         }
         try {
-            try (Scanner lukija = new Scanner(tallennus)) {
-                String rivi = lukija.nextLine();
-                String[] split = rivi.split(",");
-                int rivinro = 0;
-                setKoko(Integer.parseInt(split[0]));
-                voitontestaaja.setRivinPituus(Integer.parseInt(split[1]));
-                while (lukija.hasNextLine()) {
-                    rivi = lukija.nextLine();
-                    muutaRivi(rivi, rivinro);
-                    rivinro++;
-                }
+            Scanner lukija = new Scanner(tallennus);
+            String rivi = lukija.nextLine();
+            String[] split = rivi.split(",");
+            int rivinro = 0;
+            setKoko(Integer.parseInt(split[0]));
+            voitontestaaja.setRivinPituus(Integer.parseInt(split[1]));
+            while (lukija.hasNextLine()) {
+                rivi = lukija.nextLine();
+                muutaRivi(rivi, rivinro);
+                rivinro++;
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Pelilauta.class.getName()).log(Level.SEVERE, null, ex);
@@ -249,9 +249,11 @@ public class Pelilauta {
     }
 
     /**
-     * Muuttaa laudan ruutuja tallennuksesta luetun rivin ja annetun rivinumeron mukaan.
+     * Muuttaa laudan ruutuja tallennuksesta luetun rivin ja annetun rivinumeron
+     * mukaan.
+     *
      * @param rivi scannerilla otettu rivi tallennustiedostosta.
-     * @param rivinro 
+     * @param rivinro
      */
     private void muutaRivi(String rivi, int rivinro) {
         char[] toCharArray = rivi.toCharArray();
