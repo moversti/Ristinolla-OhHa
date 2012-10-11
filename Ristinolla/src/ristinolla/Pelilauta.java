@@ -1,16 +1,12 @@
 package ristinolla;
 
-import com.sun.xml.internal.messaging.saaj.util.CharWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Pelilaudalla on listoja joilla on tilana tyhjä, risti tai nolla.
