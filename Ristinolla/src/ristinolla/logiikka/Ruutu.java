@@ -1,5 +1,5 @@
 
-package ristinolla;
+package ristinolla.logiikka;
 
 /**
  * Pelilaudan ruutujen tilat.

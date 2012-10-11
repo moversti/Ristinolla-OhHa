@@ -1,4 +1,4 @@
-package ristinolla;
+package ristinolla.logiikka;
 
 import java.io.File;
 import java.io.FileNotFoundException;

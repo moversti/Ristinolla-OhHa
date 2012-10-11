@@ -1,4 +1,4 @@
-package ristinolla;
+package ristinolla.kayttoliittyma;
 
 /**
  * Rajapinta käyttöliittymille.

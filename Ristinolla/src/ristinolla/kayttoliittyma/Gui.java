@@ -1,4 +1,4 @@
-package ristinolla;
+package ristinolla.kayttoliittyma;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import ristinolla.logiikka.Pelilauta;
+import ristinolla.logiikka.Voitontestaaja;
 
 /**
  * Graaffinen käyttöliittymä

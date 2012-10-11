@@ -1,8 +1,10 @@
+package ristinolla.logiikka;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
-import ristinolla.Pelilauta;
-import ristinolla.Ruutu;
-import ristinolla.Voitontestaaja;
+import ristinolla.logiikka.Pelilauta;
+import ristinolla.logiikka.Ruutu;
+import ristinolla.logiikka.Voitontestaaja;
 
 /**
  *

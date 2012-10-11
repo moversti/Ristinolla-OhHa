@@ -1,5 +1,9 @@
 package ristinolla;
 
+import ristinolla.logiikka.Pelilauta;
+import ristinolla.logiikka.Voitontestaaja;
+import ristinolla.kayttoliittyma.Tekstikayttoliittyma;
+import ristinolla.kayttoliittyma.Kayttoliittyma;
 import java.util.Scanner;
 
 /**

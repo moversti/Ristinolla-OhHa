@@ -1,4 +1,4 @@
-package ristinolla;
+package ristinolla.logiikka;
 
 /**
  * Testaa pelilaudalta voittorivejä.
