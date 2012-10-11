@@ -1,10 +1,10 @@
 package ristinolla;
 
+import java.util.Scanner;
+import ristinolla.kayttoliittyma.Kayttoliittyma;
+import ristinolla.kayttoliittyma.Tekstikayttoliittyma;
 import ristinolla.logiikka.Pelilauta;
 import ristinolla.logiikka.Voitontestaaja;
-import ristinolla.kayttoliittyma.Tekstikayttoliittyma;
-import ristinolla.kayttoliittyma.Kayttoliittyma;
-import java.util.Scanner;
 
 /**
  * Ristinollapeli.

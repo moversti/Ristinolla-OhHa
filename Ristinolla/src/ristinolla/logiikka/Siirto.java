@@ -8,15 +8,39 @@ public class Siirto {
     /**
      * X-koordinaatti.
      */
-     int x;
+    private  int x;
     /**
      * Y-koordinaatti.
      */
-     int y;
+    private  int y;
     /**
      * Ruutu joka oli ennen kohdassa x,y.
      */
-     Ruutu ruutu;
+    private  Ruutu ruutu;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Ruutu getRuutu() {
+        return ruutu;
+    }
+
+    public void setRuutu(Ruutu ruutu) {
+        this.ruutu = ruutu;
+    }
 
     /**
      * Perus konstruktori.

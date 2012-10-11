@@ -177,7 +177,7 @@ public class Pelilauta {
      * Peruu edellisen siirron.
      */
     public void undo() {
-        ruudut[undo.y][undo.x] = undo.ruutu;
+        ruudut[undo.getY()][undo.getY()] = undo.getRuutu();
     }
 
     /**
