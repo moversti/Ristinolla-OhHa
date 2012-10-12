@@ -27,9 +27,9 @@ public class Gui implements Kayttoliittyma, Runnable {
      * @param pelilauta
      * @param voitontestaaja
      */
-    public Gui(Pelilauta pelilauta, Voitontestaaja voitontestaaja) {
-        this.voitontestaaja = voitontestaaja;
-        this.pelilauta = pelilauta;
+    public Gui() {
+        //Tähän kutsu metodiin joka kysyy asetukset
+        //ponnahdusikkunalla ja tekee pelilauta ja voitontestaaja oliot
     }
 
     /**

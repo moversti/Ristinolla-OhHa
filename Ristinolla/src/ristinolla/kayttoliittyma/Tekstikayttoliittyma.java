@@ -12,21 +12,58 @@ import ristinolla.logiikka.Voitontestaaja;
  */
 public class Tekstikayttoliittyma implements Kayttoliittyma {
 
+    /**
+     * Kysyy pelin asetukset (laudan koko ja voittorivin pituus) ennen
+     * aloittamista.
+     *
+     */
+    private void kysyAsetukset() {
+        String syote;
+        while (true) {
+            System.out.print("Koko: ");
+            syote = lukija.nextLine();
+            try {
+                int kokoInt = Integer.parseInt(syote);
+                if (kokoInt < 3 || kokoInt > 100) {
+                    throw new IllegalArgumentException();
+                }
+                pelilauta = new Pelilauta(kokoInt);
+                break;
+            } catch (NumberFormatException numberFormatException) {
+                System.out.println("Kokonaisluku, kiitos!");
+            } catch (IllegalArgumentException iae) {
+                System.out.println("Luku v\u00e4lilt\u00e4 3-100, kiitos!");
+            }
+        }
+        while (true) {
+            System.out.print("Rivin pituus: ");
+            syote = lukija.nextLine();
+            try {
+                int rivinPituusInt = Integer.parseInt(syote);
+                if (rivinPituusInt < 3 || rivinPituusInt > pelilauta.getKoko()) {
+                    throw new IllegalArgumentException();
+                }
+                voitontestaaja = new Voitontestaaja(pelilauta, rivinPituusInt);
+                break;
+            } catch (NumberFormatException numberFormatException) {
+                System.out.println("Kokonaisluku, kiitos!");
+            } catch (IllegalArgumentException iae) {
+                System.out.println("Luku v\u00e4lilt\u00e4 3 - laudan koko, kiitos!");
+            }
+        }
+    }
     private Pelilauta pelilauta;
     private Voitontestaaja voitontestaaja;
     private Scanner lukija;
     private boolean pelataan;
 
     /**
-     * Käynnistää lukijan.
-     *
-     * @param pelilauta
-     * @param voitontestaaja 
+     * Käynnistää lukijan ja kutsuu kysyAsetukset.
      */
-    public Tekstikayttoliittyma(Pelilauta pelilauta, Voitontestaaja voitontestaaja) {
-        this.pelilauta = pelilauta;
-        this.voitontestaaja = voitontestaaja;
+    public Tekstikayttoliittyma() {
         lukija = new Scanner(System.in);
+        kysyAsetukset();
+        pelilauta.setVoitontestaaja(voitontestaaja);
         pelilauta.setVoittaja(Ruutu.O);
     }
 
@@ -67,37 +104,40 @@ public class Tekstikayttoliittyma implements Kayttoliittyma {
         if (syote.equals("X") || syote.equals("O") || syote.equals("P")) {
             do {
                 System.out.print("Koordinaatti x: ");
-                String a = lukija.nextLine();
-                if (a.isEmpty()) {
+                String koordinaattiSyote = lukija.nextLine();
+                if (koordinaattiSyote.isEmpty()) {
                     break;
                 }
-                String xkoord = a;
+                int xkoord;;
+                try {
+                    xkoord = Integer.parseInt(koordinaattiSyote);
+                } catch (NumberFormatException nfe) {
+                    System.out.println("!!!!! Koordinaatit ovat kokonaislukuja, ääliö !!!!!");
+                    break;
+                }
                 System.out.print("Koordinaatti y: ");
-                a = lukija.nextLine();
-                if (a.isEmpty()) {
+                koordinaattiSyote = lukija.nextLine();
+                if (koordinaattiSyote.isEmpty()) {
                     break;
                 }
-                String ykoord = a;
+                int ykoord;
+                try {
+                    ykoord = Integer.parseInt(koordinaattiSyote);
+                } catch (NumberFormatException nfe) {
+                    System.out.println("!!!!! Koordinaatit ovat kokonaislukuja, ääliö !!!!!");
+                    break;
+                }
                 Ruutu ruutu;
-                if (syote.equals("X")) {
+                if (koordinaattiSyote.equals("X")) {
                     ruutu = Ruutu.X;
-                } else if (syote.equals("O")) {
+                } else if (koordinaattiSyote.equals("O")) {
                     ruutu = Ruutu.O;
                 } else if (pelilauta.getVoittaja() == Ruutu.O) {
                     ruutu = Ruutu.X;
                 } else {
                     ruutu = Ruutu.O;
                 }
-                int xkoo;
-                int ykoo;
-                try {
-                    xkoo = Integer.parseInt(xkoord);
-                    ykoo = Integer.parseInt(ykoord);
-                } catch (NumberFormatException numberFormatException) {
-                    System.out.println("!!!!! Koordinaatit ovat kokonaislukuja, ääliö !!!!!");
-                    break;
-                }
-                if (!pelilauta.muutaRuutu(xkoo, ykoo, ruutu)) {
+                if (!pelilauta.muutaRuutu(xkoord, ykoord, ruutu)) {
                     System.out.println("!!!!! Koordinaatit laudan ulkopuolella !!!!!");
                     break;
                 }
