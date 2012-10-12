@@ -178,6 +178,11 @@ public class Pelilauta {
      */
     public void undo() {
         ruudut[undo.getY()][undo.getY()] = undo.getRuutu();
+        if(voittaja.equals(Ruutu.X)){
+            voittaja=Ruutu.O;
+        } else {
+            voittaja=Ruutu.X;
+        }
     }
 
     /**
